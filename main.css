@@ -26,4 +26,5 @@
 .course:hover::after {
     opacity: 1; /* Make the prerequisites visible */
     visibility: visible; /* Show the prerequisites */
+    z-index: 10;
 }
