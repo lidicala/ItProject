@@ -1,38 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Program Requirements</title>
+    <title>It Project</title>
     <link rel="stylesheet" href="main.css">
 </head>
-
 <body>
-    <h1>Program Requirements</h1>
-    <p>The courses listed below are a suggested sequence; as long as prerequisites are met, courses may be taken in a
-        different order.</p>
+    <h2>Quarter One</h2>
+    <ul>
+        <!-- Course list for Quarter One with their respective prerequisites -->
+        <li id="csd110" class="course" data-prerequisites="ENGL 93 or placement into ENGL 99, MATH 90 or AHSE 76">CSD 110 - Computer Programming Fundamentals with Python</li>
+        <li id="csd112" class="course" data-prerequisites="ENGL 93 or placement into ENGL 99, MATH 87 or AHSE 66">CSD 112 - HTML and CSS</li>
+        <li id="engl101" class="course" data-prerequisites="ENGL 99 or placement into ENGL& 101">ENGL& 101 - English Composition I</li>
+    </ul>
 
-    <div id="quarters">
-        <!--- Q3 --->
-        <div class="quarter">
-            <h2>Quarter 3</h2>
-            <div class="course">
-                CS 143 Computer Science II Java
-                <div class="prerequisites">Prerequisites: CS& 141 Computer Science I Java</div>
-            </div>
-            <div class="course">
-                CSD 268 Quality Assurance Methodologies
-                <div class="prerequisites">Prerequisites: CS& 141 Computer Science I Java</div>
-            </div>
-            <div class="course">
-                MATH& 141 Pre-Calculus I
-                <div class="prerequisites">Prerequisites: MATH 99 or placement into MATH& 141</div>
-            </div>
-        </div>
-    </div>
-
-    <script src="degree.js"></script>
+    <h2>Quarter Two</h2>
+    <ul>
+        <!-- Course list for Quarter Two with their respective prerequisites -->
+        <li id="cs&141" class="course" data-prerequisites="CSD 110">CS& 141 - Computer Science I Java</li>
+        <li id="csd122" class="course" data-prerequisites="CSD 110, CSD 112">CSD 122 - JavaScript</li>
+        <li id="csd138" class="course" data-prerequisites="CSD 110">CSD 138 - Structured Query Language (SQL)</li>
+    </ul>
+    
+    
 </body>
-
 </html>
