@@ -11,7 +11,7 @@
 .course::after {
     content: attr(data-prerequisites); /* This will show the prerequisites text */
     position: absolute;
-    bottom: -20px; /* Moves the prerequisites text below the course */
+    top: -25px; /* Moves the prerequisites text above the course */
     left: 0;
     background-color: #ffeb3b; /* Yellow background for the prerequisites */
     padding: 5px;
@@ -20,11 +20,15 @@
     opacity: 0; /* Initially hide the prerequisites text */
     visibility: hidden; /* Keeps the prerequisites hidden */
     transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition to show the text */
+    z-index: 10; /* Make sure the text displayed above other text */
 }
 
 /* This will make the prerequisites text visible when the course is hovered over */
 .course:hover::after {
     opacity: 1; /* Make the prerequisites visible */
     visibility: visible; /* Show the prerequisites */
-    z-index: 10;
+}
+
+p {
+    font-size: 18px; 
 }
