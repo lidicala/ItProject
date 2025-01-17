@@ -1,0 +1,29 @@
+/* Style for each course in the list */
+.course {
+    position: relative;
+    padding: 10px;
+    cursor: pointer; /* Makes the course clickable */
+    background-color: #f0f0f0; /* Light background for each course */
+    margin: 5px 0; /* Space between courses */
+}
+
+/* Style for showing prerequisites when the course is hovered over */
+.course::after {
+    content: attr(data-prerequisites); /* This will show the prerequisites text */
+    position: absolute;
+    bottom: -20px; /* Moves the prerequisites text below the course */
+    left: 0;
+    background-color: #ffeb3b; /* Yellow background for the prerequisites */
+    padding: 5px;
+    font-size: 0.9em; /* Smaller text for the prerequisites */
+    color: #333; /* Dark text color for readability */
+    opacity: 0; /* Initially hide the prerequisites text */
+    visibility: hidden; /* Keeps the prerequisites hidden */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition to show the text */
+}
+
+/* This will make the prerequisites text visible when the course is hovered over */
+.course:hover::after {
+    opacity: 1; /* Make the prerequisites visible */
+    visibility: visible; /* Show the prerequisites */
+}
