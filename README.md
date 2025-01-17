@@ -2,7 +2,10 @@
 IT Project
 
 
-Uliana - HTML & CSS
+Lidi - Q1 and Q2
+Uli - Q3
+Bohdan - Q4 and Q5
+Jake - Q6
 
 
 Quarter One	Requisites
