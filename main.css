@@ -44,9 +44,9 @@ p {
 }
 
 .not-eligible {
-    background-color: red;
+    color: red;
 }
 
 .eligible {
-    background-color: blue;
+    color: blue;
 }
