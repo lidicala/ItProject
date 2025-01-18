@@ -32,3 +32,21 @@
 p {
     font-size: 18px; 
 }
+
+.course {
+    cursor: pointer;
+    padding: 5px;
+}
+
+.taken {
+    background-color: #c8e6c9; /* Light green */
+    text-decoration: line-through;
+}
+
+.not-eligible {
+    background-color: red;
+}
+
+.eligible {
+    background-color: blue;
+}
