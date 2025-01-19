@@ -50,3 +50,29 @@ p {
 .eligible {
     color: blue;
 }
+
+
+.status-dropdown {
+    position: absolute; /* This places the dropdown relative to the closest containing element */
+    background-color: #fff; /* The background color of the dropdown is white */
+    border: 1px solid #ccc; /* It gives the dropdown a light gray border */
+    padding: 10px; /* Adds padding inside the dropdown */
+    z-index: 1000; /* Ensures that the dropdown appears above other elements on the page */
+    margin-top: 5px; /* Adds space between the dropdown and the course */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a shadow to make the dropdown appear floating */
+}
+
+
+.status-dropdown button {
+    display: block; /* Makes the buttons take up the full available width */
+    margin: 5px 0; /* Adds vertical space between the buttons */
+    padding: 5px; /* Adds padding inside the button */
+    background-color: #f0f0f0; /* Light gray background for the buttons */
+    border: none; /* Removes the border from the button */
+    cursor: pointer; /* Changes the cursor to a hand when hovering over the button */
+}
+
+
+.status-dropdown button:hover {
+    background-color: #ddd; /* Changes the background of the button to a darker gray when the mouse hovers over it */
+}
