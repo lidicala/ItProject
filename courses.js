@@ -82,31 +82,108 @@ function updateCourseStatus(courseId, status) {
 
     // Remove any existing status classes
     //I add this to avoid having multiple status classes on the same course
-    courseItem.classList.remove("status-taken", "status-in-progress", "status-available");
+    courseItem.classList.remove("status-taken", "status-in-progress", "status-eligible", "status-not-eligible", "status-not-taken");
+
+    // // Add the new status class based on the selected status
+    // if (status === "taken") {
+    //     courseItem.classList.add("status-taken"); // Add the "status-taken" class
+    // } else if (status === "in-progress") { 
+    //     courseItem.classList.add("status-in-progress"); 
+    // } else {
+    //     // Reset to not-eligible
+    //     courseItem.classList.add("status-available");
+    // }
 
     // Add the new status class based on the selected status
     if (status === "taken") {
+        // Mark the course as "taken"
         courseItem.classList.add("status-taken"); // Add the "status-taken" class
-    } else if (status === "in-progress") { 
-        courseItem.classList.add("status-in-progress"); 
-    }
 
-    // Update the course status in the coursesByQuarter object 
-    //by finding the course with the matching ID and updating its status
-    if (status === "taken") {
-        const prerequisiteCourses = getPrerequisiteCourses(courseId);  
-        prerequisiteCourses.forEach(preCourseId => { 
-            const preCourseItem = document.getElementById(preCourseId);  
-            if (preCourseItem && !preCourseItem.classList.contains("status-taken")) {
-                preCourseItem.classList.remove("status-in-progress", "status-available");
-                preCourseItem.classList.add("status-available");
+        // Update dependent courses to "eligible"
+        const dependentCourses = getDependentCourses(courseId);
+        dependentCourses.forEach(dependentCourseId => {
+            const dependentCourseItem = document.getElementById(dependentCourseId);
+            if (dependentCourseItem) {
+                dependentCourseItem.classList.remove("status-not-eligible", "status-not-taken");
+                dependentCourseItem.classList.add("status-eligible"); // Mark as "eligible"
+            }
+        });
+
+    } else if (status === "in-progress") {
+        // Mark the course as "in-progress"
+        courseItem.classList.add("status-in-progress");
+
+    } else if (status === "not-taken") {
+        // Reset the course status to "not-taken"
+        courseItem.classList.add("status-not-taken"); 
+
+        // Reset dependent courses to "not-eligible"
+        const dependentCourses = getDependentCourses(courseId);
+        dependentCourses.forEach(dependentCourseId => {
+            const dependentCourseItem = document.getElementById(dependentCourseId);
+            if (dependentCourseItem) {
+                const prerequisitesMet = checkPrerequisites(dependentCourseId);
+                if (!prerequisitesMet) {
+                    dependentCourseItem.classList.remove("status-eligible", "status-in-progress", "status-taken");
+                    dependentCourseItem.classList.add("status-not-eligible");
+                }
             }
         });
     }
+
+
+    // // Update the course status in the coursesByQuarter object 
+    // //by finding the course with the matching ID and updating its status
+    // if (status === "taken") {
+    //     const prerequisiteCourses = getPrerequisiteCourses(courseId);  
+    //     prerequisiteCourses.forEach(preCourseId => { 
+    //         const preCourseItem = document.getElementById(preCourseId);  
+    //         if (preCourseItem && !preCourseItem.classList.contains("status-taken")) {
+    //             preCourseItem.classList.remove("status-in-progress", "status-available");
+    //             preCourseItem.classList.add("status-available");
+    //         }
+    //     });
+    // }
+
+    // // Handle resetting dependent courses if switching from "taken"
+    // if (status !== "taken") {
+    //     const dependentCourses = getDependentCourses(courseId);
+    //     dependentCourses.forEach(dependentCourseId => {
+    //         const dependentCourseItem = document.getElementById(dependentCourseId);
+    //         if (dependentCourseItem) {
+    //             dependentCourseItem.classList.remove("status-taken", "status-in-progress");
+    //             dependentCourseItem.classList.add("status-available");
+    //         }
+    //     });
+    // }
 }
 
+// // Function to get courses that depend on a given course (prerequisite courses)
+// function getPrerequisiteCourses(courseId) {
+//     const dependentCourses = [];
+//     Object.values(coursesByQuarter).flat().forEach(course => {
+//         if (course.prerequisites.includes(courseId)) {
+//             dependentCourses.push(course.id);
+//         }
+//     });
+//     return dependentCourses;
+// }
+
+function checkPrerequisites(courseId) {
+    // Find the course object based on its ID
+    const course = Object.values(coursesByQuarter).flat().find(c => c.id === courseId);
+    if (!course) return false;
+
+    // Check if all prerequisites are marked as "taken"
+    return course.prerequisites.every(prereqId => {
+        const prereqItem = document.getElementById(prereqId);
+        return prereqItem && prereqItem.classList.contains("status-taken");
+    });
+}
+
+
 // Function to get courses that depend on a given course (prerequisite courses)
-function getPrerequisiteCourses(courseId) {
+function getDependentCourses(courseId) {
     const dependentCourses = [];
     Object.values(coursesByQuarter).flat().forEach(course => {
         if (course.prerequisites.includes(courseId)) {
@@ -131,12 +208,25 @@ function addCourseOptions() {
     courseElements.forEach(courseElement => {
         // Add an event listener to handle click events
         courseElement.addEventListener("click", () => {
-            // Check if there's an existing dropdown menu
             const existingDropdown = courseElement.querySelector(".status-dropdown");
             if (existingDropdown) {
-                existingDropdown.remove(); // Remove the dropdown if it exists
-                return; // Exit if the dropdown was removed
+                // If it exists, remove it 
+                existingDropdown.remove();
+                return; // Exit the function to avoid creating a new dropdown
             }
+
+            // Close any dropdowns that might exist on other courses
+            document.querySelectorAll(".status-dropdown").forEach(dropdown => dropdown.remove());   
+                     
+            // Close any existing dropdowns
+            // document.querySelectorAll(".status-dropdown").forEach(dropdown => dropdown.remove());
+
+            // // Check if there's an existing dropdown menu
+            // const existingDropdown = courseElement.querySelector(".status-dropdown");
+            // if (existingDropdown) {
+            //     existingDropdown.remove(); // Remove the dropdown if it exists
+            //     return; // Exit if the dropdown was removed
+            // }
 
             // Create a new dropdown menu
             const dropdown = document.createElement("div");
@@ -147,6 +237,7 @@ function addCourseOptions() {
             const options = [
                 { label: "Mark as Taken", value: "taken" },
                 { label: "Mark as In Progress", value: "in-progress" },
+                { label: "Reset to Not-Taken", value: "not-taken" }
             ];
 
             // Loop through each option and create a button for it
