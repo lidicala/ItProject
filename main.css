@@ -13,7 +13,7 @@
     position: absolute;
     top: -25px; /* Moves the prerequisites text above the course */
     left: 0;
-    background-color: #ffeb3b; /* Yellow background for the prerequisites */
+    background-color: #ff933b; /* Orange background for the prerequisites */
     padding: 5px;
     font-size: 0.9em; /* Smaller text for the prerequisites */
     color: #333; /* Dark text color for readability */
@@ -38,19 +38,18 @@ p {
     padding: 5px;
 }
 
-.taken {
-    background-color: #c8e6c9; /* Light green */
-    text-decoration: line-through;
+/* Status colors */
+.status-taken {
+    background-color: #92dc94; /* Light green for "Taken" */
 }
 
-.not-eligible {
-    color: red;
+.status-in-progress {
+    background-color: #73daf1; /* Light blue for "In Progress" */
 }
 
-.eligible {
-    color: blue;
+.status-available {
+    background-color: #f8e965; /* Yellow for "Available" */
 }
-
 
 .status-dropdown {
     position: absolute; /* This places the dropdown relative to the closest containing element */

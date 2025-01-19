@@ -75,6 +75,50 @@ const coursesByQuarter = {
 };
 
 
+// Function to update the status of a course and its prerequisite courses
+function updateCourseStatus(courseId, status) {
+    const courseItem = document.getElementById(courseId);  // Get the course element by ID
+    if (!courseItem) return;
+
+    // Remove any existing status classes
+    //I add this to avoid having multiple status classes on the same course
+    courseItem.classList.remove("status-taken", "status-in-progress", "status-available");
+
+    // Add the new status class based on the selected status
+    if (status === "taken") {
+        courseItem.classList.add("status-taken"); // Add the "status-taken" class
+    } else if (status === "in-progress") { 
+        courseItem.classList.add("status-in-progress"); 
+    }
+
+    // Update the course status in the coursesByQuarter object 
+    //by finding the course with the matching ID and updating its status
+    if (status === "taken") {
+        const prerequisiteCourses = getPrerequisiteCourses(courseId);  
+        prerequisiteCourses.forEach(preCourseId => { 
+            const preCourseItem = document.getElementById(preCourseId);  
+            if (preCourseItem && !preCourseItem.classList.contains("status-taken")) {
+                preCourseItem.classList.remove("status-in-progress", "status-available");
+                preCourseItem.classList.add("status-available");
+            }
+        });
+    }
+}
+
+// Function to get courses that depend on a given course (prerequisite courses)
+function getPrerequisiteCourses(courseId) {
+    const dependentCourses = [];
+    Object.values(coursesByQuarter).flat().forEach(course => {
+        if (course.prerequisites.includes(courseId)) {
+            dependentCourses.push(course.id);
+        }
+    });
+    return dependentCourses;
+}
+
+
+//This part of the code worked before I add the implementation of the two functions above! Now the menu is still there after the user click a option.!!! 
+
 // This function adds a dropdown menu next to each course when clicked
 // I mean, when a user clicks on a course, it shows options to mark it as "Taken" or "In Progress".
 // But if the dropdown is already visible (because the user clicked on the course before), 
