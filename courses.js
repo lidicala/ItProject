@@ -1,36 +1,13 @@
-// Course Class Definition
+// Class for defining a course
 class Course {
     constructor(id, prerequisites = []) {
         this.id = id;
         this.prerequisites = prerequisites;
-        // this.taken = false;
         this.status = '';
-
     }
 }
 
-// Initialize courses
-// const courses = [
-//     new Course("csd110"),
-//     new Course("csd112"),
-//     new Course("engl101"),
-//     new Course("cs141", ["csd110"]),
-//     new Course("csd122", ["csd110", "csd112"]),
-//     new Course("csd138", ["csd110"]),
-//     new Course("cs143", ["cs141"]),
-//     new Course("csd268", ["cs141"]),
-//     new Course("csd230", ["cs143 or csd228"]),
-//     new Course("csd275", ["csd110", "csd112"]),
-//     new Course("csd233", ["cs143"]),
-//     new Course("csd228", ["cs141"]),
-//     new Course("csd298", ["cs143"]),
-//     new Course("dsgn290", ["art102"]),
-//     new Course("csd297", ["csd112", "csd122", "csd138", "cs141", "csd228 or csd268"]),
-//     new Course("csd235", ["cs143"]),
-// ];
-
-// Initialize courses by quarters I did it in this way to have a better organization of the courses
-// I mean for me was easier to see the courses by quarter, but if you prefer to have all the courses in the same array
+// Group courses by quarters 
 const coursesByQuarter = {
     quarter1: [
         new Course("csd110", ["none"]),
@@ -64,7 +41,7 @@ const coursesByQuarter = {
         new Course("csd297", ["csd112", "csd122", "csd138", "cs141", "csd228 or csd268"]),
         new Course("csd235", ["csd143"]), // OR "cs141" as a prerequisite 
     ],
-    //we dont have specific id for this course, so I just put the name of the course
+
     genEdCourses: [
         new Course("engl101-gen", ["ENGL 99", "placement into ENGL& 101"]),
         new Course("math141-gen", ["MATH 99", "placement into MATH& 141"]),
@@ -81,23 +58,12 @@ function updateCourseStatus(courseId, status) {
     if (!courseItem) return;
 
     // Remove any existing status classes
-    //I add this to avoid having multiple status classes on the same course
     courseItem.classList.remove("status-taken", "status-in-progress", "status-eligible", "status-not-eligible", "status-not-taken");
-
-    // // Add the new status class based on the selected status
-    // if (status === "taken") {
-    //     courseItem.classList.add("status-taken"); // Add the "status-taken" class
-    // } else if (status === "in-progress") { 
-    //     courseItem.classList.add("status-in-progress"); 
-    // } else {
-    //     // Reset to not-eligible
-    //     courseItem.classList.add("status-available");
-    // }
 
     // Add the new status class based on the selected status
     if (status === "taken") {
         // Mark the course as "taken"
-        courseItem.classList.add("status-taken"); // Add the "status-taken" class
+        courseItem.classList.add("status-taken"); 
 
         // Update dependent courses to "eligible"
         const dependentCourses = getDependentCourses(courseId);
@@ -130,45 +96,9 @@ function updateCourseStatus(courseId, status) {
             }
         });
     }
-
-
-    // // Update the course status in the coursesByQuarter object 
-    // //by finding the course with the matching ID and updating its status
-    // if (status === "taken") {
-    //     const prerequisiteCourses = getPrerequisiteCourses(courseId);  
-    //     prerequisiteCourses.forEach(preCourseId => { 
-    //         const preCourseItem = document.getElementById(preCourseId);  
-    //         if (preCourseItem && !preCourseItem.classList.contains("status-taken")) {
-    //             preCourseItem.classList.remove("status-in-progress", "status-available");
-    //             preCourseItem.classList.add("status-available");
-    //         }
-    //     });
-    // }
-
-    // // Handle resetting dependent courses if switching from "taken"
-    // if (status !== "taken") {
-    //     const dependentCourses = getDependentCourses(courseId);
-    //     dependentCourses.forEach(dependentCourseId => {
-    //         const dependentCourseItem = document.getElementById(dependentCourseId);
-    //         if (dependentCourseItem) {
-    //             dependentCourseItem.classList.remove("status-taken", "status-in-progress");
-    //             dependentCourseItem.classList.add("status-available");
-    //         }
-    //     });
-    // }
 }
 
-// // Function to get courses that depend on a given course (prerequisite courses)
-// function getPrerequisiteCourses(courseId) {
-//     const dependentCourses = [];
-//     Object.values(coursesByQuarter).flat().forEach(course => {
-//         if (course.prerequisites.includes(courseId)) {
-//             dependentCourses.push(course.id);
-//         }
-//     });
-//     return dependentCourses;
-// }
-
+// Check if all prerequisites for a course are met
 function checkPrerequisites(courseId) {
     // Find the course object based on its ID
     const course = Object.values(coursesByQuarter).flat().find(c => c.id === courseId);
@@ -193,15 +123,9 @@ function getDependentCourses(courseId) {
     return dependentCourses;
 }
 
-
-//This part of the code worked before I add the implementation of the two functions above! Now the menu is still there after the user click a option.!!! 
-
-// This function adds a dropdown menu next to each course when clicked
-// I mean, when a user clicks on a course, it shows options to mark it as "Taken" or "In Progress".
-// But if the dropdown is already visible (because the user clicked on the course before), 
-// we remove the old one first to avoid having more than one dropdown on the screen.
+// Add a dropdown menu to each course for updating status
 function addCourseOptions() {
-    // Select all elements with the class "course"
+    // Get all course elements
     const courseElements = document.querySelectorAll(".course");
     
     // Loop through each course element
@@ -215,25 +139,14 @@ function addCourseOptions() {
                 return; // Exit the function to avoid creating a new dropdown
             }
 
-            // Close any dropdowns that might exist on other courses
+            // Remove dropdowns from other courses
             document.querySelectorAll(".status-dropdown").forEach(dropdown => dropdown.remove());   
                      
-            // Close any existing dropdowns
-            // document.querySelectorAll(".status-dropdown").forEach(dropdown => dropdown.remove());
-
-            // // Check if there's an existing dropdown menu
-            // const existingDropdown = courseElement.querySelector(".status-dropdown");
-            // if (existingDropdown) {
-            //     existingDropdown.remove(); // Remove the dropdown if it exists
-            //     return; // Exit if the dropdown was removed
-            // }
-
             // Create a new dropdown menu
             const dropdown = document.createElement("div");
-            dropdown.className = "status-dropdown"; // Add the class for styling
+            dropdown.className = "status-dropdown"; 
 
             // Define the options for the dropdown menu
-            //we can also think what options we want to show to the user
             const options = [
                 { label: "Mark as Taken", value: "taken" },
                 { label: "Mark as In Progress", value: "in-progress" },
@@ -252,7 +165,7 @@ function addCourseOptions() {
                     dropdown.remove(); // Remove the dropdown after selecting an option
                 });
 
-                dropdown.appendChild(button); // Append the button to the dropdown
+                dropdown.appendChild(button); // Attach the dropdown to the course
             });
 
             // Add the dropdown menu to the course element
@@ -261,6 +174,6 @@ function addCourseOptions() {
     });
 }
 
-// Initialize the functionality
+// Initialize the dropdown functionality for all courses
 addCourseOptions();
 
