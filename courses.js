@@ -30,7 +30,7 @@ const coursesByQuarter = {
         new Course("soc&101", ["ENGL 93", "placement into ENGL 99 or higher"]),
     ],
     quarter5: [
-        new Course("csd230", ["cs143", "csd228"]),
+        new Course("csd230", ["cs143 or csd228"]),
         new Course("csd275", ["csd110", "csd112"]),
         new Course("csd233", ["cs143"]), // as either a prerequisite or corequisite
     ],
@@ -39,7 +39,7 @@ const coursesByQuarter = {
         new Course("csd298", ["cs143"]),
         new Course("dsgn290", ["art102"]),
         new Course("csd297", ["csd112", "csd122", "csd138", "cs141", "csd228 or csd268"]),
-        new Course("csd235", ["cs143"]), // OR "cs141" as a prerequisite
+        new Course("csd235", ["cs141 or cs143"]), // OR "cs141" as a prerequisite
     ],
 
     genEdCourses: [
