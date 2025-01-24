@@ -1,0 +1,37 @@
+{
+    "quarters": {
+      "quarter1": [
+        { "id": "csd110", "prerequisites": ["none"] },
+        { "id": "csd112", "prerequisites": ["none"] },
+        { "id": "engl101", "prerequisites": ["none"] }
+      ],
+      "quarter2": [
+        { "id": "cs141", "prerequisites": ["csd110"] },
+        { "id": "csd122", "prerequisites": ["csd110", "csd112"] },
+        { "id": "csd138", "prerequisites": ["csd110"] }
+      ],
+      "quarter3": [
+        { "id": "cs143", "prerequisites": ["cs141"] },
+        { "id": "csd268", "prerequisites": ["cs141"] },
+        { "id": "math141", "prerequisites": ["MATH 99", "placement into MATH& 141"] }
+      ],
+      "quarter4": [
+        { "id": "art102", "prerequisites": ["ABED 40", "AHSE 56", "ABED 46"] },
+        { "id": "phys&114", "prerequisites": ["MATH 111", "MATH& 142"] },
+        { "id": "soc&101", "prerequisites": ["ENGL 93", "placement into ENGL 99 or higher"] }
+      ],
+      "quarter5": [
+        { "id": "csd230", "prerequisites": ["cs143", "csd228"] },
+        { "id": "csd275", "prerequisites": ["csd110", "csd112"] },
+        { "id": "csd233", "prerequisites": ["cs143"] }
+      ],
+      "quarter6": [
+        { "id": "csd228", "prerequisites": ["cs141"] },
+        { "id": "csd298", "prerequisites": ["cs143"] },
+        { "id": "dsgn290", "prerequisites": ["art102"] },
+        { "id": "csd297", "prerequisites": ["csd112", "csd122", "csd138", "cs141", "csd228 or csd268"] },
+        { "id": "csd235", "prerequisites": ["cs143"] }
+      ]
+    }
+  }
+  

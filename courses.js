@@ -1,3 +1,18 @@
+async function loadCoursesData() {
+    const response = await fetch('coursesData.json'); 
+    const data = await response.json(); 
+    return data.quarters; 
+}
+
+let coursesByQuarter = {};
+
+loadCoursesData().then(courses => {
+    coursesByQuarter = courses;
+    console.log(coursesByQuarter); 
+    addCourseOptions();
+});
+
+
 // Class for defining a course
 class Course {
     constructor(id, prerequisites = []) {
@@ -6,50 +21,6 @@ class Course {
         this.status = '';
     }
 }
-
-// Group courses by quarters 
-const coursesByQuarter = {
-    quarter1: [
-        new Course("csd110", ["none"]),
-        new Course("csd112", ["none"]),
-        new Course("engl101", ["none"]),
-    ],
-    quarter2: [
-        new Course("cs141", ["csd110"]),
-        new Course("csd122", ["csd110", "csd112"]),
-        new Course("csd138", ["csd110"]),
-    ],
-    quarter3: [
-        new Course("cs143", ["cs141"]),
-        new Course("csd268", ["cs141"]),
-        new Course("math141", ["MATH 99", "placement into MATH& 141"]),
-    ],
-    quarter4: [
-        new Course("art102", ["ABED 40", "AHSE 56", "ABED 46"]),
-        new Course("phys&114", ["MATH 111", "MATH& 142"]),
-        new Course("soc&101", ["ENGL 93", "placement into ENGL 99 or higher"]),
-    ],
-    quarter5: [
-        new Course("csd230", ["cs143", "csd228"]),
-        new Course("csd275", ["csd110", "csd112"]),
-        new Course("csd233", ["cs143"]), // as either a prerequisite or corequisite
-    ],
-    quarter6: [
-        new Course("csd228", ["cs141"]),
-        new Course("csd298", ["cs143"]),
-        new Course("dsgn290", ["art102"]),
-        new Course("csd297", ["csd112", "csd122", "csd138", "cs141", "csd228 or csd268"]),
-        new Course("csd235", ["cs143"]), // OR "cs141" as a prerequisite
-    ],
-
-    genEdCourses: [
-        new Course("engl101-gen", ["ENGL 99", "placement into ENGL& 101"]),
-        new Course("math141-gen", ["MATH 99", "placement into MATH& 141"]),
-        new Course("phys114", ["MATH 111", "MATH& 142"]),
-        new Course("soc101", ["ENGL 93", "placement into ENGL 99"]),
-        new Course("art102", ["ABED 40", "AHSE 56", "placement into MATH 87", "placement into ENGL 93"]),
-    ]
-};
 
 // Function to update the status of a course and its prerequisite courses
 function updateCourseStatus(courseId, status) {
@@ -185,5 +156,3 @@ function addCourseOptions() {
     });
 }
 
-// Initialize the dropdown functionality for all courses
-addCourseOptions();
