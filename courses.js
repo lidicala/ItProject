@@ -30,16 +30,16 @@ const coursesByQuarter = {
         new Course("soc&101", ["ENGL 93", "placement into ENGL 99 or higher"]),
     ],
     quarter5: [
-        new Course("csd230", ["csd143", "csd228"]),
+        new Course("csd230", ["cs143", "csd228"]),
         new Course("csd275", ["csd110", "csd112"]),
-        new Course("csd233", ["cs143"]), //as either a prerequisite or corequisite
+        new Course("csd233", ["cs143"]), // as either a prerequisite or corequisite
     ],
     quarter6: [
         new Course("csd228", ["cs141"]),
-        new Course("csd298", ["csd143"]),
+        new Course("csd298", ["cs143"]),
         new Course("dsgn290", ["art102"]),
         new Course("csd297", ["csd112", "csd122", "csd138", "cs141", "csd228 or csd268"]),
-        new Course("csd235", ["csd143"]), // OR "cs141" as a prerequisite 
+        new Course("csd235", ["cs143"]), // OR "cs141" as a prerequisite
     ],
 
     genEdCourses: [
@@ -50,7 +50,6 @@ const coursesByQuarter = {
         new Course("art102", ["ABED 40", "AHSE 56", "placement into MATH 87", "placement into ENGL 93"]),
     ]
 };
-
 
 // Function to update the status of a course and its prerequisite courses
 function updateCourseStatus(courseId, status) {
@@ -70,8 +69,11 @@ function updateCourseStatus(courseId, status) {
         dependentCourses.forEach(dependentCourseId => {
             const dependentCourseItem = document.getElementById(dependentCourseId);
             if (dependentCourseItem) {
-                dependentCourseItem.classList.remove("status-not-eligible", "status-not-taken");
-                dependentCourseItem.classList.add("status-eligible"); // Mark as "eligible"
+                const prerequisitesMet = checkPrerequisites(dependentCourseId);
+                if (prerequisitesMet) {
+                    dependentCourseItem.classList.remove("status-not-eligible", "status-not-taken");
+                    dependentCourseItem.classList.add("status-eligible"); // Mark as "eligible"
+                }
             }
         });
 
@@ -105,18 +107,27 @@ function checkPrerequisites(courseId) {
     if (!course) return false;
 
     // Check if all prerequisites are marked as "taken"
-    return course.prerequisites.every(prereqId => {
-        const prereqItem = document.getElementById(prereqId);
+    return course.prerequisites.every(prereq => {
+        // Handle "or" prerequisites
+        if (prereq.includes(" or ")) {
+            const options = prereq.split(" or ");
+            return options.some(option => {
+                const prereqItem = document.getElementById(option.trim());
+                return prereqItem && prereqItem.classList.contains("status-taken");
+            });
+        }
+
+        // Handle standard prerequisites
+        const prereqItem = document.getElementById(prereq.trim());
         return prereqItem && prereqItem.classList.contains("status-taken");
     });
 }
-
 
 // Function to get courses that depend on a given course (prerequisite courses)
 function getDependentCourses(courseId) {
     const dependentCourses = [];
     Object.values(coursesByQuarter).flat().forEach(course => {
-        if (course.prerequisites.includes(courseId)) {
+        if (course.prerequisites.includes(courseId) || course.prerequisites.some(prereq => prereq.includes(courseId))) {
             dependentCourses.push(course.id);
         }
     });
@@ -176,4 +187,3 @@ function addCourseOptions() {
 
 // Initialize the dropdown functionality for all courses
 addCourseOptions();
-
