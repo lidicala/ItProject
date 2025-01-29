@@ -11,8 +11,6 @@ loadCoursesData().then(courses => {
     console.log(coursesByQuarter); 
     addCourseOptions();
 });
-
-
 // Class for defining a course
 class Course {
     constructor(id, prerequisites = []) {

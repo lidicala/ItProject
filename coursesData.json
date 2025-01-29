@@ -1,4 +1,9 @@
-{
+{ 
+    "prePrerequisites": [
+    { "id": "pre1", "description": "ENGL 93 (or placement into ENGL 99 or higher) AND MATH 87 or AHSE 66 (or placement into MATH 90 or AHSE 76 or higher)" },
+    { "id": "pre2", "description": "MATH 99 (or placement into MATH& 141) Required for Pre-Calculus" },
+    { "id": "pre3", "description": "MATH 111 or MATH& 142 (or any higher level course in the calculus sequence) Required for Physics" }
+    ],
     "quarters": {
       "quarter1": [
         { "id": "csd110", "prerequisites": ["none"] },
@@ -23,7 +28,7 @@
       "quarter5": [
         { "id": "csd230", "prerequisites": ["cs143", "csd228"] },
         { "id": "csd275", "prerequisites": ["csd110", "csd112"] },
-        { "id": "csd233", "prerequisites": ["cs143"] }
+        { "id": "csd233", "prerequisites": ["cs143"] } 
       ],
       "quarter6": [
         { "id": "csd228", "prerequisites": ["cs141"] },
