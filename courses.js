@@ -11,6 +11,7 @@ loadCoursesData().then(courses => {
     console.log(coursesByQuarter); 
     addCourseOptions();
 });
+
 // Class for defining a course
 class Course {
     constructor(id, prerequisites = []) {
@@ -24,12 +25,18 @@ class Course {
 function updateCourseStatus(courseId, status) {
     const courseItem = document.getElementById(courseId);  // Get the course element by ID
     if (!courseItem) return;
-
+    
     // Remove any existing status classes
     courseItem.classList.remove("status-taken", "status-in-progress", "status-eligible", "status-not-eligible", "status-not-taken");
 
     // Add the new status class based on the selected status
-    if (status === "taken") {
+    // if (status === "taken") {
+    //     const prerequisitesMet = checkPrerequisites(courseId); // Check if prerequisites are met
+    //     if (!prerequisitesMet) {
+    //         console.log("You must complete all prerequisites first.");
+    //         return; // Prevent marking the course as "taken"
+    //     }
+    if (status === "taken") {        
         // Mark the course as "taken"
         courseItem.classList.add("status-taken"); 
 
@@ -105,8 +112,8 @@ function getDependentCourses(courseId) {
 
 // Add a dropdown menu to each course for updating status
 function addCourseOptions() {
-    // Get all course elements
-    const courseElements = document.querySelectorAll(".course");
+    // Get all course elements with either "course" or "prereq" class
+    const courseElements = document.querySelectorAll(".course, .prereq");
     
     // Loop through each course element
     courseElements.forEach(courseElement => {
@@ -154,3 +161,5 @@ function addCourseOptions() {
     });
 }
 
+// Call the function to add dropdowns
+addCourseOptions();
