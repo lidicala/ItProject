@@ -24,7 +24,7 @@
 }
 
 /* This will make the prerequisites text visible when the course is hovered over */
-.course:hover::after, .prereq:hover::after {
+.course:hover::after {
     opacity: 1; /* Make the prerequisites visible */
     visibility: visible; /* Show the prerequisites */
 }

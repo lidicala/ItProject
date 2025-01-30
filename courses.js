@@ -25,59 +25,122 @@ class Course {
 function updateCourseStatus(courseId, status) {
     const courseItem = document.getElementById(courseId);  // Get the course element by ID
     if (!courseItem) return;
-    
+
+    // // Remove any existing status classes
+    // courseItem.classList.remove("status-taken", "status-in-progress", "status-eligible", "status-not-eligible", "status-not-taken");
+
+    // Allow pre-prerequisites to be marked as "taken" without checks
+    if (!courseItem.classList.contains("prereq") && status === "taken") {
+        const prerequisitesMet = checkPrerequisites(courseId); 
+        if (!prerequisitesMet) {
+            console.log("You must complete all prerequisites first.");
+            return; // Prevent marking the course as "taken"
+        }
+    }
+
     // Remove any existing status classes
     courseItem.classList.remove("status-taken", "status-in-progress", "status-eligible", "status-not-eligible", "status-not-taken");
 
-    // Add the new status class based on the selected status
+    // // Add the new status class based on the selected status
     // if (status === "taken") {
     //     const prerequisitesMet = checkPrerequisites(courseId); // Check if prerequisites are met
     //     if (!prerequisitesMet) {
     //         console.log("You must complete all prerequisites first.");
     //         return; // Prevent marking the course as "taken"
     //     }
-    if (status === "taken") {        
-        // Mark the course as "taken"
-        courseItem.classList.add("status-taken"); 
+    // }
+    // if (status === "taken") {        
+    //     // Mark the course as "taken"
+    //     courseItem.classList.add("status-taken"); 
 
-        // Update dependent courses to "eligible"
-        const dependentCourses = getDependentCourses(courseId);
-        dependentCourses.forEach(dependentCourseId => {
-            const dependentCourseItem = document.getElementById(dependentCourseId);
-            if (dependentCourseItem) {
-                const prerequisitesMet = checkPrerequisites(dependentCourseId);
-                if (prerequisitesMet) {
-                    dependentCourseItem.classList.remove("status-not-eligible", "status-not-taken");
-                    dependentCourseItem.classList.add("status-eligible"); // Mark as "eligible"
-                }
-            }
-        });
+        // // Update dependent courses to "eligible"
+        // const dependentCourses = getDependentCourses(courseId);
+        // dependentCourses.forEach(dependentCourseId => {
+        //     const dependentCourseItem = document.getElementById(dependentCourseId);
+        //     if (dependentCourseItem) {
+        //         const prerequisitesMet = checkPrerequisites(dependentCourseId);
+        //         if (prerequisitesMet) {
+        //             dependentCourseItem.classList.remove("status-not-eligible", "status-not-taken");
+        //             dependentCourseItem.classList.add("status-eligible"); // Mark as "eligible"
+        //         }
+        //     }
+        // });
 
+    // } else if (status === "in-progress") {
+    //     // Mark the course as "in-progress"
+    //     courseItem.classList.add("status-in-progress");
+
+    // } else if (status === "not-taken") {
+    //     // Reset the course status to "not-taken"
+    //     courseItem.classList.add("status-not-taken"); 
+
+    //     // Reset dependent courses to "not-eligible"
+    //     const dependentCourses = getDependentCourses(courseId);
+    //     dependentCourses.forEach(dependentCourseId => {
+    //         const dependentCourseItem = document.getElementById(dependentCourseId);
+    //         if (dependentCourseItem) {
+    //             const prerequisitesMet = checkPrerequisites(dependentCourseId);
+    //             if (!prerequisitesMet) {
+    //                 dependentCourseItem.classList.remove("status-eligible", "status-in-progress", "status-taken");
+    //                 dependentCourseItem.classList.add("status-not-eligible");
+    //             }
+    //         }
+    //     });
+    // }
+
+
+    // Add the new status class based on the selected status
+    if (status === "taken") {
+        courseItem.classList.add("status-taken");
+        // updateDependentCourses(courseId);
     } else if (status === "in-progress") {
-        // Mark the course as "in-progress"
         courseItem.classList.add("status-in-progress");
-
-    } else if (status === "not-taken") {
-        // Reset the course status to "not-taken"
-        courseItem.classList.add("status-not-taken"); 
-
-        // Reset dependent courses to "not-eligible"
-        const dependentCourses = getDependentCourses(courseId);
-        dependentCourses.forEach(dependentCourseId => {
-            const dependentCourseItem = document.getElementById(dependentCourseId);
-            if (dependentCourseItem) {
-                const prerequisitesMet = checkPrerequisites(dependentCourseId);
-                if (!prerequisitesMet) {
-                    dependentCourseItem.classList.remove("status-eligible", "status-in-progress", "status-taken");
-                    dependentCourseItem.classList.add("status-not-eligible");
-                }
-            }
-        });
+    } else {
+        courseItem.classList.add("status-not-taken");
     }
+    // Update dependent courses' availability
+    updateDependentCourses(courseId);
 }
+
+function updateDependentCourses(courseId) {
+    const dependentCourses = getDependentCourses(courseId);
+    dependentCourses.forEach(dependentCourseId => {
+        const dependentCourseItem = document.getElementById(dependentCourseId);
+        if (dependentCourseItem) {
+            const prerequisitesMet = checkPrerequisites(dependentCourseId);
+            if (!prerequisitesMet) {
+                dependentCourseItem.classList.remove("status-eligible", "status-in-progress", "status-taken");
+                dependentCourseItem.classList.add("status-not-eligible");
+            }
+        }
+    });
+
+    // const dependentCourses = getDependentCourses(courseId);
+    // dependentCourses.forEach(dependentCourseId => {
+    //     const dependentCourseItem = document.getElementById(dependentCourseId);
+    //     if (dependentCourseItem) {
+    //         const prerequisitesMet = checkPrerequisites(dependentCourseId);
+    //         if (prerequisitesMet) {
+    //             dependentCourseItem.classList.add("status-eligible");
+    //             dependentCourseItem.classList.remove("status-not-eligible");
+    //         } else {
+    //             dependentCourseItem.classList.add("status-not-eligible");
+    //             dependentCourseItem.classList.remove("status-eligible");
+    //         }
+    //     }
+    // });
+}
+
 
 // Check if all prerequisites for a course are met
 function checkPrerequisites(courseId) {
+
+    // Check if the course is a pre-prerequisite
+    const prereqItem = document.getElementById(courseId);
+    if (prereqItem && prereqItem.classList.contains("prereq")) {
+        return true; // Allow pre-prerequisites to be marked as taken without checks
+    }
+
     // Find the course object based on its ID
     const course = Object.values(coursesByQuarter).flat().find(c => c.id === courseId);
     if (!course) return false;
@@ -88,6 +151,7 @@ function checkPrerequisites(courseId) {
         if (prereq.includes(" or ")) {
             const options = prereq.split(" or ");
             return options.some(option => {
+            // return prereq.split(" or ").some(option => {
                 const prereqItem = document.getElementById(option.trim());
                 return prereqItem && prereqItem.classList.contains("status-taken");
             });
