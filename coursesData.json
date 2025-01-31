@@ -1,14 +1,14 @@
 { 
     "prePrerequisites": [
-    { "id": "pre1", "description": "ENGL 93 (or placement into ENGL 99 or higher) AND MATH 87 or AHSE 66 (or placement into MATH 90 or AHSE 76 or higher)" },
-    { "id": "pre2", "description": "MATH 99 (or placement into MATH& 141) Required for Pre-Calculus" },
-    { "id": "pre3", "description": "MATH 111 or MATH& 142 (or any higher level course in the calculus sequence) Required for Physics" }
+    { "id": "eng93", "description": "ENGL 93 (or placement into ENGL 99 or higher) AND MATH 87 or AHSE 66 (or placement into MATH 90 or AHSE 76 or higher)" },
+    { "id": "math99", "description": "MATH 99 (or placement into MATH& 141) Required for Pre-Calculus" },
+    { "id": "math111", "description": "MATH 111 or MATH& 142 (or any higher level course in the calculus sequence) Required for Physics" }
     ],
     "quarters": {
       "quarter1": [
-        { "id": "csd110", "prerequisites": ["none"] },
-        { "id": "csd112", "prerequisites": ["none"] },
-        { "id": "engl101", "prerequisites": ["none"] }
+        { "id": "csd110", "prerequisites": ["eng93"] },
+        { "id": "csd112", "prerequisites": ["eng93"] },
+        { "id": "engl101", "prerequisites": ["eng93"] }
       ],
       "quarter2": [
         { "id": "cs141", "prerequisites": ["csd110"] },
@@ -18,12 +18,12 @@
       "quarter3": [
         { "id": "cs143", "prerequisites": ["cs141"] },
         { "id": "csd268", "prerequisites": ["cs141"] },
-        { "id": "math141", "prerequisites": ["MATH 99", "placement into MATH& 141"] }
+        { "id": "math141", "prerequisites": ["math99"] }
       ],
       "quarter4": [
-        { "id": "art102", "prerequisites": ["ABED 40", "AHSE 56", "ABED 46"] },
-        { "id": "phys&114", "prerequisites": ["MATH 111", "MATH& 142"] },
-        { "id": "soc&101", "prerequisites": ["ENGL 93", "placement into ENGL 99 or higher"] }
+        { "id": "art102", "prerequisites": ["eng93"] },
+        { "id": "phys&114", "prerequisites": ["math111"] },
+        { "id": "soc&101", "prerequisites": ["eng93"]}
       ],
       "quarter5": [
         { "id": "csd230", "prerequisites": ["cs143", "csd228"] },
