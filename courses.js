@@ -28,7 +28,6 @@ class Course {
     }
 }
 
-
 // Function to update the status of a course and its prerequisite courses
 function updateCourseStatus(courseId, status) {
     const courseItem = document.getElementById(courseId);
