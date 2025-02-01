@@ -1,0 +1,40 @@
+{
+    "quarters": {
+    "quarter1": [
+      { "id": "bte111", "prerequisites": [""] },
+      { "id": "bte120", "prerequisites": ["eng93"] },
+      { "id": "bte130", "prerequisites": ["eng93"] }
+    ],
+    "quarter2": [
+      { "id": "bte124", "prerequisites": ["eng93"] },
+      { "id": "math107", "prerequisites": ["math99"] },
+      { "id": "bte112", "prerequisites": ["bte120"] }
+    ],
+    "quarter3": [
+        { "id": "", "prerequisites": [""] },
+        { "id": "", "prerequisites": [""] },
+        { "id": "", "prerequisites": [""] }
+      
+    ],
+    "quarter4": [
+        { "id": "", "prerequisites": [""] },
+        { "id": "", "prerequisites": [""] },
+        { "id": "", "prerequisites": [""] },
+        { "id": "", "prerequisites": [""] }
+    
+    ],
+    "quarter5": [
+        { "id": "", "prerequisites": [""] },
+        { "id": "", "prerequisites": [""] },
+        { "id": "", "prerequisites": [""] }
+     
+    ],
+    "quarter6": [
+        { "id": "", "prerequisites": [""] },
+        { "id": "", "prerequisites": [""] },
+        { "id": "", "prerequisites": [""] },
+        { "id": "", "prerequisites": [""] }
+
+    ]
+  }
+}
