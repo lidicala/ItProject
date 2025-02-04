@@ -1,9 +1,21 @@
+// Description: JavaScript file for the courses page
+//not sure if we need to fill the html with the json file
+// in that case i think we will need the "name" over there to be able to fill the html
+// fetch('coursesData.json')
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log(data.description)
+//         document.querySelector("#test").innerHTML = data.description
+// //        document.getElementbyId("#test").innerHTML = data.description
+//           })
+
+
 //prePrerequisites data 
 let prePrerequisites = [];
 
 async function loadCoursesData() {
     const response = await fetch('coursesData.json'); 
-    const data = await response.json(); 
+    const data = response.json(); 
 
     // global use
     prePrerequisites = data.prePrerequisites; 

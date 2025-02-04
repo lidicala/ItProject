@@ -8,6 +8,52 @@ Bohdan - Q4 and Q5
 Jake - Q6
 
 
+Business Technology Associate (bizTech.json) https://catalog.lwtech.edu/preview_program.php?catoid=16&poid=3883&returnto=896
+
+Quarter One
+
+BTE 111 Word I 5 credits
+BTE 120 Business Computer Management 3 credits
+BTE 130 Business English I 5 credits
+ 
+
+Quarter Two
+
+BTE 124 PowerPoint 4 credits
+MATH& 107 Math in Society 5 credits (or any college-level, transferable Quantitative Reasoning course)
+BTE 112 Excel I 5 credits
+ 
+
+Quarter Three
+
+ENGL& 101 English Composition I 5 credits
+BTE 212 Excel II 5 credits
+BTE 281 Project Management With Microsoft Project 5 credits
+ 
+
+Quarter Four
+
+BTE 114 Access 5 credits
+BTE 106 Keyboarding II 3 credits
+ART 102 Introduction to 2D Design 5 credits (or any Humanities course)
+BUS& 101 Introduction to Business 5 credits
+ 
+
+Quarter Five
+
+BTE 135 Outlook 4 credits
+BTE 211 Word II 5 credits
+CSD 112 HTML and CSS 5 credits
+ 
+
+Quarter Six
+
+BTE 125 Web-Based Technologies 5 credits
+BTE 195 Capstone Project 3 credits
+PSYC& 100 General Psychology 5 credits (or any Social Science course)
+BTE 191 Customer Service/Help Desk 3 credits
+
+
 Quarter One	Requisites
 Students needing prerequisites for math and English should take them this quarter.	
 CSD 110 Computer Programming Fundamentals with Python 5 credits	ENGL 93 (or placement into ENGL 99 or higher) and MATH 90 or AHSE 76 (or placement into MATH 99 or higher)
