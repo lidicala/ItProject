@@ -9,6 +9,38 @@
 // //        document.getElementbyId("#test").innerHTML = data.description
 //           })
 
+//fetching the json file and creating the html elements
+//we can also use async await instead of .then
+fetch('coursesData.json')
+    .then(response => response.json()) 
+    .then(data => {
+        console.log(data.quarters);
+
+       // Create a new h2 element for each quarter this one is for replace our h2 in the html
+       // quarter 1 quarter 2 etc...
+    for (let quarter in data.quarters) {
+            const quarterNumber = document.createElement('h2'); 
+            quarterNumber.textContent = `Quarter ${quarter.charAt(quarter.length - 1)}`; 
+            document.querySelector("#test").appendChild(quarterNumber); 
+            
+            const courses = data.quarters[quarter];      
+            const ul = document.createElement('ul'); 
+            ul.setAttribute('id', quarter); 
+           
+            courses.forEach(course => { 
+                const li = document.createElement('li'); 
+                li.classList.add('course');  
+                li.setAttribute('id', course.id); 
+                li.setAttribute('data-prerequisites', course.prerequisites.join(", ")); 
+                li.textContent = course.name;  
+                
+                ul.appendChild(li); 
+            });           
+            document.querySelector("#test").appendChild(ul);
+        }
+    })
+    .catch(error => console.error('Error loading the JSON:', error));
+
 
 //prePrerequisites data 
 let prePrerequisites = [];

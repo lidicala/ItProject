@@ -6,36 +6,36 @@
     ],
     "quarters": {
       "quarter1": [
-        { "id": "csd110", "prerequisites": ["eng93"] },
-        { "id": "csd112", "prerequisites": ["eng93"] },
-        { "id": "engl101", "prerequisites": ["eng93"] }
+        { "id": "csd110", "name": "CSD 110 Computer Programming Fundamentals with Python", "prerequisites": ["eng93"] },
+        { "id": "csd112","name": "CSD 112 HTML and CSS", "prerequisites": ["eng93"] },
+        { "id": "engl101", "name": "ENGL& 101 English Composition I","prerequisites": ["eng93"] }
       ],
       "quarter2": [
-        { "id": "cs141", "prerequisites": ["csd110"] },
-        { "id": "csd122", "prerequisites": ["csd110", "csd112"] },
-        { "id": "csd138", "prerequisites": ["csd110"] }
+        { "id": "cs141", "name": "CS& 141 Computer Science I Java","prerequisites": ["csd110"] },
+        { "id": "csd122", "name": "CSD 122 JavaScript", "prerequisites": ["csd110", "csd112"] },
+        { "id": "csd138", "name": "CSD 138 Structured Query Language (SQL)", "prerequisites": ["csd110"] }
       ],
       "quarter3": [
-        { "id": "cs143", "prerequisites": ["cs141"] },
-        { "id": "csd268", "prerequisites": ["cs141"] },
-        { "id": "math141", "prerequisites": ["math99"] }
+        { "id": "cs143", "name": "CS 143 Computer Science II Java", "prerequisites": ["cs141"] },
+        { "id": "csd268", "name": "CSD 268 Quality Assurance Methodologies", "prerequisites": ["cs141"] },
+        { "id": "math141", "name": "MATH& 141 Pre-Calculus I", "prerequisites": ["math99"] }
       ],
       "quarter4": [
-        { "id": "art102", "prerequisites": ["eng93"] },
-        { "id": "phys&114", "prerequisites": ["math111"] },
-        { "id": "soc&101", "prerequisites": ["eng93"]}
+        { "id": "art102", "name": "ART 102 Introduction to 2D Design", "prerequisites": ["eng93"] },
+        { "id": "phys&114", "name": "PHYS& 114 General Physics I w/Lab", "prerequisites": ["math111"] },
+        { "id": "soc&101", "name": "SOC& 101 Introduction to Sociology", "prerequisites": ["eng93"]}
       ],
       "quarter5": [
-        { "id": "csd230", "prerequisites": ["cs143", "csd228"] },
-        { "id": "csd275", "prerequisites": ["csd110", "csd112"] },
-        { "id": "csd233", "prerequisites": ["cs143"] } 
+        { "id": "csd230", "name": "CSD 230 Programming for Mobile Devices", "prerequisites": ["cs143", "csd228"] },
+        { "id": "csd275", "name": "CSD 275 PHP Scripting", "prerequisites": ["csd110", "csd112"] },
+        { "id": "csd233", "name": "CSD 233 C++ Programming", "prerequisites": ["cs143"] } 
       ],
       "quarter6": [
-        { "id": "csd228", "prerequisites": ["cs141"] },
-        { "id": "csd298", "prerequisites": ["cs143"] },
-        { "id": "dsgn290", "prerequisites": ["art102"] },
-        { "id": "csd297", "prerequisites": ["csd112", "csd122", "csd138", "cs141", "csd228 or csd268"] },
-        { "id": "csd235", "prerequisites": ["cs143"] }
+        { "id": "csd228", "name": "CSD 228 Programming with C#", "prerequisites": ["cs141"] },
+        { "id": "csd298", "name": "CSD 298 Technical Interview/Job Search", "prerequisites": ["cs143"] },
+        { "id": "dsgn290", "name": "DSGN 290 Portfolio/Job Search", "prerequisites": ["art102"] },
+        { "id": "csd297", "name": "CSD 297 IT Project", "prerequisites": ["csd112", "csd122", "csd138", "cs141", "csd228 or csd268"] },
+        { "id": "csd235", "name": "CSD 235 Algorithms and Data Structures", "prerequisites": ["cs143"] }
       ]
     }
   }
