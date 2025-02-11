@@ -1,3 +1,9 @@
+// Global variable to store pre-prerequisites
+let prePrerequisites = [];
+
+// Store courses by quarter
+let coursesByQuarter = {};
+
 // Function to load degree data based on the selected degree
 function loadDegree(degree) 
 {
@@ -17,7 +23,15 @@ function loadDegree(degree)
     fetch(degreeFile)
         .then(response => response.json())
         .then(data => {
+            // Save prePrerequisites and quarters globally
+            prePrerequisites = data.prePrerequisites;
+            coursesByQuarter = data.quarters;
+
+            // Display the courses in the #test div
             displayCourses(data);
+
+            // Set up the dropdown option
+            addCourseOptions();
         });
 }
 
@@ -28,8 +42,6 @@ function displayCourses(data)
     // Clear previous courses before displaying new ones
     document.querySelector("#test").innerHTML = "";
 
-    // Create a new h2 element for each quarter this one is for replace our h2 in the html
-    // quarter 1 quarter 2 etc...
     // Go through each quarter in the JSON data
     for (let quarter in data.quarters) 
     {
@@ -48,13 +60,11 @@ function displayCourses(data)
             const li = document.createElement("li");
             li.classList.add("course");
             li.setAttribute("id", course.id);
-            // li.setAttribute('data-prerequisites', course.prerequisites.join(", ")); 
-            // li.textContent = course.name;  
 
             // Get the full names of the prerequisites
             let fullPrereqNames = course.prerequisites.map((prereq) => prereq.name).join(", ");
-
             li.setAttribute("data-prerequisites", fullPrereqNames);
+
             li.textContent = course.name;
 
             ul.appendChild(li);  // Add the course to the list
@@ -78,33 +88,6 @@ function chooseDegree(selectedDegree)
 }
 
 
-// Global variable to store pre-prerequisites
-let prePrerequisites = [];
-
-// Function to load course data
-async function loadCoursesData() 
-{
-    const response = await fetch('coursesData.json');
-    const data = response.json();
-
-    // global use
-    prePrerequisites = data.prePrerequisites;
-
-    return data.quarters;
-}
-
-// Store courses by quarter
-let coursesByQuarter = {};
-
-// Load the course data and set up course options
-loadCoursesData().then(courses => 
-{
-    coursesByQuarter = courses;     // Save courses globally
-    console.log(coursesByQuarter);
-    addCourseOptions();
-});
-
-
 // Function to check if prerequisites are met for a course
 function checkPrerequisites(courseId) 
 {
@@ -113,19 +96,9 @@ function checkPrerequisites(courseId)
     if (!course) return false;
 
     // Check if all prerequisites are met
-    return course.prerequisites.every(prereq => 
+    return course.prerequisites.every(prereqObj => 
     {
-        if (prereq.includes(" or ")) 
-        {
-            const options = prereq.split(" or ");
-            return options.some(option => 
-            {
-                const prereqItem = document.getElementById(option.trim());
-                return prereqItem && prereqItem.classList.contains("status-taken");
-            });
-        }
-
-        const prereqItem = document.getElementById(prereq.trim());
+        const prereqItem = document.getElementById(prereqObj.id);
         return prereqItem && prereqItem.classList.contains("status-taken");
     });
 }
@@ -144,7 +117,7 @@ function updateCourseStatus(courseId, status)
     {
         courseItem.classList.add("status-taken");
 
-        // Update dependent courses to "eligible"
+        // Update dependent courses to "eligible" if their prerequisites are now met
         const dependentCourses = getDependentCourses(courseId);
         dependentCourses.forEach(dependentCourseId => 
         {
@@ -159,7 +132,6 @@ function updateCourseStatus(courseId, status)
                 }
             }
         });
-
     } 
     else if (status === "in-progress") 
     {
@@ -169,22 +141,32 @@ function updateCourseStatus(courseId, status)
     {
         courseItem.classList.add("status-not-taken");
 
-        // Reset dependent courses to "not-eligible"
-        const dependentCourses = getDependentCourses(courseId);
-        dependentCourses.forEach(dependentCourseId => 
-        {
-            const dependentCourseItem = document.getElementById(dependentCourseId);
-            if (dependentCourseItem) 
-            {
-                const prerequisitesMet = checkPrerequisites(dependentCourseId);
-                if (!prerequisitesMet) 
-                {
-                    dependentCourseItem.classList.remove("status-eligible", "status-in-progress", "status-taken");
-                    dependentCourseItem.classList.add("status-not-eligible");
-                }
-            }
-        });
+        // Reset all dependent courses that are no longer eligible
+        resetCourses(courseId);
     }
+}
+
+// Function to reset courses that aren't eligible
+function resetCourses(courseId) 
+{
+    const dependentCourses = getDependentCourses(courseId);
+
+    dependentCourses.forEach(dependentCourseId => 
+    {
+        const dependentCourseItem = document.getElementById(dependentCourseId);
+        if (dependentCourseItem) 
+        {
+            const prerequisitesMet = checkPrerequisites(dependentCourseId);
+            // If this course is no longer eligible, reset it
+            if (!prerequisitesMet) 
+            {
+                dependentCourseItem.classList.remove("status-eligible", "status-in-progress", "status-taken");
+                dependentCourseItem.classList.add("status-not-eligible");
+
+                resetCourses(dependentCourseId);
+            }
+        }
+    });
 }
 
 
@@ -194,7 +176,8 @@ function getDependentCourses(courseId)
     const dependentCourses = [];
     Object.values(coursesByQuarter).flat().forEach(course => 
     {
-        if (course.prerequisites.includes(courseId) || course.prerequisites.some(prereq => prereq.includes(courseId))) 
+        // If any prerequisite object has .id === courseId, then "course" depends on "courseId"
+        if (course.prerequisites.some(prereqObj => prereqObj.id === courseId)) 
         {
             dependentCourses.push(course.id);
         }
@@ -202,13 +185,15 @@ function getDependentCourses(courseId)
     return dependentCourses;
 }
 
-// Function to check if a course is a pre-rerequisite
+
+// Function to check if a course is a pre-prerequisites 
 function isPrePrerequisite(courseId) 
 {
     return prePrerequisites.some(preReq => preReq.id === courseId);
 }
 
-// Function to add course options 
+
+// Function to add course options (the dropdown) 
 function addCourseOptions() 
 {
     const courseElements = document.querySelectorAll(".course, .prereq");
@@ -219,6 +204,27 @@ function addCourseOptions()
 
         courseElement.addEventListener("click", () => 
         {
+            // With this commented out part of the code it removes dropdown but breaks somethings else
+
+            // Remove any dropdowns on OTHER courses
+            // document.querySelectorAll(".status-dropdown").forEach(dropdown => 
+            // {
+            //     // Remove dropdowns from other elements
+            //     if (!courseElement.contains(dropdown)) 
+            //     {
+            //         dropdown.remove();
+            //     }
+            // });
+
+            // // Check if THIS course already has a dropdown 
+            // const existingDropdown = courseElement.querySelector(".status-dropdown");
+            // if (existingDropdown) 
+            // {
+            //     existingDropdown.remove();
+            //     return; 
+            // }
+
+            // Here starts the code how we had it before
             // Remove any existing dropdowns
             document.querySelectorAll(".status-dropdown").forEach(dropdown => dropdown.remove());
 
