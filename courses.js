@@ -37,30 +37,35 @@ function displayCourses(data) {
   // Clear previous courses before displaying new ones
   document.querySelector("#test").innerHTML = "";
 
+  // Check if the "pre-prerequisites" section exists
   if (document.querySelector("#pre-prerequisites")) {
 
+    // Clear previous pre-prerequisites before displaying new ones
     document.querySelector("#pre-prerequisites").innerHTML = "";
 
+    // Create and add a heading for the pre-prerequisites
     const preReqHeader = document.createElement("h2");
     preReqHeader.textContent = "Pre-Prerequisites";
     document.querySelector("#pre-prerequisites").appendChild(preReqHeader);
 
+    // Add a subtitle for the pre-prerequisites
     const subTitle = document.createElement("p");
-    subTitle.textContent = "These courses must be taken before starting the degree.";
+    subTitle.textContent = "To be enrolled, you must meet at least one of the following:";
     document.querySelector("#pre-prerequisites").appendChild(subTitle);
 
+    // Create an unordered list for the pre-prerequisites
     const ul = document.createElement("ul");
     ul.setAttribute("id", "pre-prerequisites");
     document.querySelector("#pre-prerequisites").appendChild(ul);
 
+    // Go through each pre-prerequisite course and add it to the list
     for (let preReq of data.prePrerequisites) {
-        const li = document.createElement("li");
-        li.classList.add("prereq");
-        li.setAttribute("id", preReq.id);
-        li.textContent = preReq.description;
-        ul.appendChild(li);
-      }
-    
+      const li = document.createElement("li");
+      li.classList.add("prereq");
+      li.setAttribute("id", preReq.id);
+      li.textContent = preReq.name;
+      ul.appendChild(li);
+    }
   }
 
   // Go through each quarter in the JSON data
@@ -81,9 +86,7 @@ function displayCourses(data) {
       li.setAttribute("id", course.id);
 
       // Get the full names of the prerequisites
-      let fullPrereqNames = course.prerequisites
-        .map((prereq) => prereq.name)
-        .join(", ");
+      let fullPrereqNames = course.prerequisites.map((prereq) => prereq.name).join(", ");
       li.setAttribute("data-prerequisites", fullPrereqNames);
 
       li.textContent = course.name;
@@ -106,9 +109,7 @@ function chooseDegree(selectedDegree) {
 // Function to check if prerequisites are met for a course
 function checkPrerequisites(courseId) {
   // Find the course by ID
-  const course = Object.values(coursesByQuarter)
-    .flat()
-    .find((c) => c.id === courseId);
+  const course = Object.values(coursesByQuarter).flat().find((c) => c.id === courseId);
   if (!course) return false;
 
   // Check if all prerequisites are met
@@ -186,14 +187,13 @@ function resetCourses(courseId) {
 // Function to get courses that depend on a given course (prerequisite courses)
 function getDependentCourses(courseId) {
   const dependentCourses = [];
-  Object.values(coursesByQuarter)
-    .flat()
-    .forEach((course) => {
-      // If any prerequisite object has .id === courseId, then "course" depends on "courseId"
-      if (course.prerequisites.some((prereqObj) => prereqObj.id === courseId)) {
-        dependentCourses.push(course.id);
-      }
-    });
+  // Loop through all courses in all quarters
+  Object.values(coursesByQuarter).flat().forEach((course) => {
+    // Check if the current course has courseId as a prerequisite
+    if (course.prerequisites.some((prereqObj) => prereqObj.id === courseId)) {
+      dependentCourses.push(course.id);
+    }
+  });
   return dependentCourses;
 }
 
@@ -210,8 +210,6 @@ function addCourseOptions() {
     const courseId = courseElement.id;
 
     courseElement.addEventListener("click", () => {
-      // With this commented out part of the code it removes dropdown but breaks somethings else
-
       // Remove any dropdowns on OTHER courses
       document.querySelectorAll(".status-dropdown").forEach((dropdown) => {
         // Remove dropdowns from other elements
@@ -221,18 +219,14 @@ function addCourseOptions() {
       });
 
       // Check if THIS course already has a dropdown
-      // const existingDropdown = courseElement.querySelector(".status-dropdown");
-      // if (existingDropdown)
-      // {
-      //     existingDropdown.remove();
-      //     return;
-      // }
+      const existingDropdown = courseElement.querySelector(".status-dropdown");
+      if (existingDropdown) {
+        existingDropdown.remove();
+        return;
+      }
 
-      // Here starts the code how we had it before
       // Remove any existing dropdowns
-      document
-        .querySelectorAll(".status-dropdown")
-        .forEach((dropdown) => dropdown.remove());
+      document.querySelectorAll(".status-dropdown").forEach((dropdown) => dropdown.remove());
 
       // Check if the course should have a dropdown
       const prerequisitesMet = checkPrerequisites(courseId);
