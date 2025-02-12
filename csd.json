@@ -1,6 +1,6 @@
 { 
     "prePrerequisites": [
-    { "id": "eng93", "name": "ENGL 93 (or placement into ENGL 99 or higher) AND MATH 87 or AHSE 66 (or placement into MATH 90 or AHSE 76 or higher)" },
+    { "id": "eng93", "name": "ENGL 93 (or placement into ENGL 99 or higher) and MATH 87 or AHSE 66 (or placement into MATH 90 or AHSE 76 or higher)" },
     { "id": "math99", "name": "MATH 99 (or placement into MATH& 141)" },
     { "id": "math111", "name": "MATH 111 or MATH& 142 (or any higher level course in the calculus sequence)" }
     ],
@@ -19,8 +19,8 @@
         { "id": "cs141", "name": "CS& 141 Computer Science I Java",
         "prerequisites": [{ "id": "csd110", "name": "CSD 110 Computer Programming Fundamentals with Python" }] },
         { "id": "csd122", "name": "CSD 122 JavaScript", 
-        "prerequisites": [{ "id": "csd110", "name": "CSD 110 Computer Programming Fundamentals with Python" },
-                          { "id": "csd112", "name": "CSD 112 HTML and CSS" }] },
+        "prerequisites": [{ "id": "csd110", "name": "CSD 110" },
+                          { "id": "csd112", "name": "CSD 112" }] },
         { "id": "csd138", "name": "CSD 138 Structured Query Language (SQL)", 
         "prerequisites": [{ "id": "csd110", "name": "CSD 110 Computer Programming Fundamentals with Python" }] }
       ],
@@ -61,12 +61,12 @@
         "prerequisites": [{ "id": "art102", "name": "ART 102 Introduction to 2D Design" }] },
         { "id": "csd297", "name": "CSD 297 IT Project", 
         "prerequisites": [
-          { "id": "csd112", "name": "CSD 112 HTML and CSS" },
-          { "id": "csd122", "name": "CSD 122 JavaScript" },
-          { "id": "csd138", "name": "CSD 138 Structured Query Language (SQL)" },
-          { "id": "cs141", "name": "CS& 141 Computer Science I Java" },
-          { "id": "csd228", "name": "CSD 228 Programming with C#" },
-          { "id": "csd268", "name": "CSD 268 Quality Assurance Methodologies" }] },
+          { "id": "csd112", "name": "CSD 112" },
+          { "id": "csd122", "name": "CSD 122" },
+          { "id": "csd138", "name": "CSD 138" },
+          { "id": "cs141", "name": "CS& 141" },
+          { "id": "csd228", "name": "CSD 228" },
+          { "id": "csd268", "name": "CSD 268" }] },
         { "id": "csd235", "name": "CSD 235 Algorithms and Data Structures", 
         "prerequisites": [{ "id": "cs143", "name": "CS 143 Computer Science II Java" }] }
       ]
