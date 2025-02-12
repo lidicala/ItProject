@@ -1,8 +1,9 @@
 {   
   "prePrerequisites": [
-    { "id": "eng93", "name": "ENGL 93 (or placement into ENGL 99 or higher) AND MATH 87 or AHSE 66 (or placement into MATH 90 or AHSE 76 or higher)" },
-    { "id": "math99", "name": "MATH 99 (or placement into MATH& 141) Required for Pre-Calculus" },
-    { "id": "math111", "name": "MATH 111 or MATH& 142 (or any higher level course in the calculus sequence) Required for Physics" }
+    { "id": "eng93", "name": "ABED 40 or AHSE 56 (or placement into MATH 87 or AHSE 66 or higher) and ABED 46 (or placement into ENGL 93 or higher)" },
+    { "id": "math99", "name": "MATH 98 (recommended) or MATH 99 (or placement into MATH& 107)" },
+    { "id": "eng99", "name": "ENGL& 99 (or placement into ENGL& 101)"},
+    {"id": "bte105", "name": "BTE 105 Keyboarding I"}
     ],
     
     "quarters": {
@@ -10,40 +11,38 @@
       { "id": "bte111", "name": "BTE 111 Word I", 
       "prerequisites": [{ "id": "bte120", "name": "BTE 120 Business Computer Management" }] },
       { "id": "bte120", "name": "BTE 120 Business Computer Management", 
-      "prerequisites": [{ "id": "eng93", "name": "ENGL 93 (or placement into ENGL 99 or higher)" }] },
+      "prerequisites": [{ "id": "eng93", "name": "ABED 40 or AHSE 56 (or placement into MATH 87 or AHSE 66 or higher) and ABED 46 (or placement into ENGL 93 or higher)" }] },
       { "id": "bte130", "name": "BTE 130 Business English I", 
-      "prerequisites": [{ "id": "eng93", "name": "ENGL 93 (or placement into ENGL 99 or higher)" }] }
+      "prerequisites": [{ "id": "eng93", "name": "ABED 40 (or MATH 87 or higher) and ABED 46 (or ENGL 93 or higher)" }] }
     ],
 
     "quarter2": [
       { "id": "bte124", "name": "BTE 124 PowerPoint", 
-      "prerequisites": [{ "id": "eng93", "name": "ENGL 93 (or placement into ENGL 99 or higher)" }] },
+      "prerequisites": [{ "id": "eng93", "name": "ABED 40 (or MATH 87 or higher) and ABED 46 (or ENGL 93 or higher)" }] },
       { "id": "math107", "name": "MATH& 107 Math in Society", 
-      "prerequisites": [{ "id": "math99", "name": "MATH 99 or placement into MATH& 141" }] },
+      "prerequisites": [{ "id": "math99", "name": "MATH 98 (recommended) or MATH 99 (or placement into MATH& 107)" }] },
       { "id": "bte112", "name": "BTE 112 Excel I", 
       "prerequisites": [{ "id": "bte120", "name": "BTE 120 Business Computer Management" }] }
     ],
 
     "quarter3": [
         { "id": "eng101", "name": "ENGL& 101 English Composition I", 
-        "prerequisites": [{ "id": "eng93", "name": "ENGL 99 or placement into ENGL& 101" }] },
+        "prerequisites": [{ "id": "eng99", "name": "ENGL& 99 (or placement into ENGL& 101)" }] },
         { "id": "bte212", "name": "BTE 212 Excel II", 
-        "prerequisites": [{ "id": "bte112", "name": "BTE 112 Excel I" }] },
+        "prerequisites": [{ "id": "bte112", "name": "BTE 112 and MATH 87 or AHSE 66 (or equivalent placement scores for MATH 98 or higher)" }] },
         { "id": "bte281", "name": "BTE 281 Project Management With Microsoft Project", 
         "prerequisites": [{ "id": "bte120", "name": "BTE 120 Business Computer Management" }] }
-      
     ],
 
     "quarter4": [
         { "id": "bte114", "name": "BTE 114 Access", 
         "prerequisites": [{ "id": "bte120", "name": "BTE 120 Business Computer Management" }] },
         { "id": "bte106", "name": "BTE 106 Keyboarding II", 
-        "prerequisites": [{ "id": "eng93", "name": "BTE 105 Keyboarding I" }] },
+        "prerequisites": [{ "id": "bte105", "name": "BTE 105 Keyboarding I" }] },
         { "id": "art102", "name": "ART 102 Introduction to 2D Design", 
-        "prerequisites": [{ "id": "eng93", "name": "ENGL 93 (or placement into ENGL 99 or higher)" }] },
+        "prerequisites": [{ "id": "eng93", "name": "ABED 40 or AHSE 56 (or placement into MATH 87 or AHSE 66 or higher) and ABED 46 (or placement into ENGL 93 or higher)" }] },
         { "id": "bus101", "name": "BUS& 101 Introduction to Business", 
-        "prerequisites": [{ "id": "eng93", "name": "ENGL 99 or placement into ENGL& 101" }] }
-    
+        "prerequisites": [{ "id": "eng99", "name": "MATH 87 or AHSE 66 (or placement into MATH 98 or higher) and ENGL 99 (or placement into ENGL& 101)" }] }
     ],
 
     "quarter5": [
@@ -52,8 +51,7 @@
         { "id": "bte211", "name": "BTE 211 Word II", 
         "prerequisites": [{ "id": "bte111", "name": "BTE 111 Word I" }] },
         { "id": "csd112", "name": "CSD 112 HTML and CSS", 
-        "prerequisites": [{ "id": "eng93", "name": "ENGL 93 (or placement into ENGL 99 or higher)" }] }
-     
+        "prerequisites": [{ "id": "eng93", "name": "ENGL 93 (or placement into ENGL 99 or higher) and MATH 87 or AHSE 66 (or placement into MATH 90 or AHSE 76 or higher)" }] }
     ],
 
     "quarter6": [
@@ -64,10 +62,9 @@
         { "id": "bte195", "name": "BTE 195 Capstone Project", 
         "prerequisites": [{ "id": "instructor_permission", "name": "Instructor Permission Required" }] },
         { "id": "psyc100", "name": "PSYC& 100 General Psychology", 
-        "prerequisites": [{ "id": "eng93", "name": "ENGL 93 (or placement into ENGL 99 or higher)" }] },
+        "prerequisites": [{ "id": "eng93", "name": "ABED 40 or AHSE 56 (or placement into MATH 87 or AHSE 66 or higher) and ABED 46 (or placement into ENGL 93 or higher)" }] },
         { "id": "bte191", "name": "BTE 191 Customer Service/Help Desk", 
-        "prerequisites": [{ "id": "eng93", "name": "ENGL 93 (or placement into ENGL 99 or higher)" }] }
-
+        "prerequisites": [{ "id": "eng93", "name": "ABED 40 or AHSE 56 (or MATH 87 or AHSE 66 or higher) and ABED 46 (or ENGL 93 or higher)" }] }
     ]
   }
 }
