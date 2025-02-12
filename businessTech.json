@@ -26,7 +26,7 @@
 
     "quarter3": [
         { "id": "eng101", "name": "ENGL& 101 English Composition I", 
-        "prerequisites": [{ "id": "eng99", "name": "ENGL 99 or placement into ENGL& 101" }] },
+        "prerequisites": [{ "id": "eng93", "name": "ENGL 99 or placement into ENGL& 101" }] },
         { "id": "bte212", "name": "BTE 212 Excel II", 
         "prerequisites": [{ "id": "bte112", "name": "BTE 112 Excel I" }] },
         { "id": "bte281", "name": "BTE 281 Project Management With Microsoft Project", 
@@ -38,11 +38,11 @@
         { "id": "bte114", "name": "BTE 114 Access", 
         "prerequisites": [{ "id": "bte120", "name": "BTE 120 Business Computer Management" }] },
         { "id": "bte106", "name": "BTE 106 Keyboarding II", 
-        "prerequisites": [{ "id": "bte105", "name": "BTE 105 Keyboarding I" }] },
+        "prerequisites": [{ "id": "eng93", "name": "BTE 105 Keyboarding I" }] },
         { "id": "art102", "name": "ART 102 Introduction to 2D Design", 
         "prerequisites": [{ "id": "eng93", "name": "ENGL 93 (or placement into ENGL 99 or higher)" }] },
         { "id": "bus101", "name": "BUS& 101 Introduction to Business", 
-        "prerequisites": [{ "id": "eng99", "name": "ENGL 99 or placement into ENGL& 101" }] }
+        "prerequisites": [{ "id": "eng93", "name": "ENGL 99 or placement into ENGL& 101" }] }
     
     ],
 

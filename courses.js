@@ -1,3 +1,11 @@
+/*Couple of notes, for businessTech:
+In Q4, BTE 106 needs BTE 105 as a prereq, but it's not in the program. I've switched to ENG93
+to make it work for now.
+Anything marked as needing ENG99, I've switched to ENG93 to make work.
+Includes: ENG101, BUS&101
+*/
+
+
 // Global variable to store pre-prerequisites
 let prePrerequisites = [];
 
