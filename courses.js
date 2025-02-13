@@ -97,14 +97,6 @@ function displayCourses(data) {
   }
 }
 
-// Function to handle degree selection
-function chooseDegree(selectedDegree) {
-  if (selectedDegree === "csd") {
-    loadDegree("csd");
-  } else if (selectedDegree === "bs") {
-    loadDegree("bs");
-  }
-}
 
 // Function to check if prerequisites are met for a course
 function checkPrerequisites(courseId) {
