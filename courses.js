@@ -1,3 +1,6 @@
+// take json file, create mySQL data base , so the data will be in mySQL instead of json files
+// tables in sql, populate with the same data as json files 
+
 // Global variable to store pre-prerequisites
 let prePrerequisites = [];
 
