@@ -4,13 +4,13 @@ let coursesByQuarter = {};
 
 // Function to load the JSON file based on the selected program
 function loadDegree(degree) {
-  const degreeFile = `/itProject/${degree}.json`; // Ensure correct path for Live Server
+  const degreeFile = `/itProject/${degree}.json`;
   console.log(degreeFile);
 
   fetch(degreeFile)
     .then((response) => {
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        throw new Error(`Error ${response.status}`);
       }
       return response.json();
     })

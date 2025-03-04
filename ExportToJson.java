@@ -9,7 +9,7 @@ public class ExportToJson {
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/itProjectDB11";
         String user = "root";
-        String password = "yumcheese89!"; //add pw
+        String password = ""; //add pw
 
         try (Connection conn = DriverManager.getConnection(url, user, password)) { //https://docs.oracle.com/javase/8/docs/api/java/sql/DriverManager.html#getConnection-java.lang.String-
             
