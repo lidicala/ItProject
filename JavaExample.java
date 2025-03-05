@@ -63,19 +63,15 @@ public class PrePrerequisite {
 
 /*Third Java file: DatabaseUtils.java
 This class handles the database connection and retrieves courses from MySQL.
-It fetches course details and stores them in a list. */
+It fetches course details and stores them in a list. 
 
-//connect the database using JDBC
-
-
-/* 1. we need to connect to the MySQL database using JDBC. 
+1. we need to connect to the MySQL database using JDBC. 
 This is one of the way I found Without this, we can’t access the course data. 
 We need to specify the connection parameters to establish a connection.
 
 2. Once we’re connected, we need to run an SQL query to get all the courses. 
 so basically we're asking the database to give us everything from the courses table. 
 guessing here is when we start to work with the object called resultSet
-
 
 3. Next, we loop through each row in the ResultSet. 
 For every row (which represents a course), we create a new Course object 
