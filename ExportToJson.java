@@ -5,6 +5,16 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+//for adding mysql connector to vscode
+//1. open vscode
+//2. contrl + shift + p
+//3. go to Java configure classpath
+//4. click on libraries
+//5. click on add.
+//6. <yourfilepath>\lib\mysql-connector-j-9.2.0.jar
+//7. click ok
+
+
 public class ExportToJson {
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/itProjectDB11";
