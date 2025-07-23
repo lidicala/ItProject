@@ -1,84 +1,90 @@
-# ItProject
-IT Project
+# Project: Academic Program Planning Tool
+_This README is available in English and Spanish. Scroll down for the Spanish version._ 
+_Este README está disponible en inglés y en español. Desplázate hacia abajo para la versión en español._
+
+**Contributors:** Jacob Gomez, Uliana Topilina, Lidi Cala
+
+---
+
+## What does this project do?
+
+This project connects to a MySQL database to pull academic program data, processes it with a Java application, and exports well-structured JSON files. These JSON files include:
+
+* Course information
+* General program prerequisites
+* Program plans by academic quarter
+* Course chains based on prerequisites
+
+It supports two academic programs and sends the generated data to a visual interface built with JavaScript.
+
+The HTML used is minimal — just a shell — and is populated dynamically with JavaScript using the JSON data. This makes the frontend lightweight and easier to update without touching the HTML itself.
+
+---
+
+## Technologies Used
+
+* Java (data processing and JSON generation)
+* MySQL (relational database)
+* JavaScript (frontend logic and rendering)
+* HTML/CSS (basic structure and layout)
+
+---
+
+## How it works
+
+1. Java reads data from the MySQL database.
+2. It structures the data and writes it into JSON files.
+3. The frontend (JavaScript + HTML) loads those JSON files and builds the page dynamically, displaying:
+
+   * All courses per quarter
+   * Prerequisite connections
+   * Visual guidance for planning the academic path
+
+---
+
+# Planificador de Programas Académicos
+
+_Este README está disponible en inglés y en español. Esta es la versión en español._  
+_This README is available in English and Spanish. Scroll up for the English version._
 
 
-Lidi - Q1 and Q2
-Uli - Q3
-Bohdan - Q4 and Q5
-Jake - Q6
+**Colaboradores:** Jacob Gomez, Uliana Topilina, Lidi Cala
 
+---
 
-Business Technology Associate (bizTech.json) https://catalog.lwtech.edu/preview_program.php?catoid=16&poid=3883&returnto=896
+## ¿Qué hace este proyecto?
 
-Quarter One
+Este proyecto se conecta a una base de datos MySQL para obtener información sobre programas académicos. Luego, un programa en Java procesa esos datos y genera archivos JSON bien organizados. Estos archivos contienen:
 
-BTE 111 Word I 5 credits
-BTE 120 Business Computer Management 3 credits
-BTE 130 Business English I 5 credits
- 
+* Información de los cursos
+* Prerrequisitos generales del programa
+* Planes por trimestre
+* Encadenamiento de cursos según sus prerrequisitos
 
-Quarter Two
+Está preparado para manejar dos programas académicos distintos y usa los archivos JSON para alimentar una interfaz visual hecha con JavaScript.
 
-BTE 124 PowerPoint 4 credits
-MATH& 107 Math in Society 5 credits (or any college-level, transferable Quantitative Reasoning course)
-BTE 112 Excel I 5 credits
- 
+El HTML que usamos es muy básico, casi sin contenido. Toda la información se agrega dinámicamente desde JavaScript, lo que hace que el frontend sea ligero y fácil de mantener sin tener que editar el HTML directamente.
 
-Quarter Three
+---
 
-ENGL& 101 English Composition I 5 credits
-BTE 212 Excel II 5 credits
-BTE 281 Project Management With Microsoft Project 5 credits
- 
+## Tecnologías Utilizadas
 
-Quarter Four
+* Java (procesamiento de datos y generación de JSON)
+* MySQL (base de datos relacional)
+* JavaScript (lógica del frontend y renderizado)
+* HTML/CSS (estructura básica y diseño)
 
-BTE 114 Access 5 credits
-BTE 106 Keyboarding II 3 credits
-ART 102 Introduction to 2D Design 5 credits (or any Humanities course)
-BUS& 101 Introduction to Business 5 credits
- 
+---
 
-Quarter Five
+## Cómo funciona
 
-BTE 135 Outlook 4 credits
-BTE 211 Word II 5 credits
-CSD 112 HTML and CSS 5 credits
- 
+1. Java lee los datos desde la base de datos MySQL.
+2. Estructura la información y la guarda en archivos JSON.
+3. El frontend (JavaScript + HTML) carga esos JSON y construye la página dinámicamente, mostrando:
 
-Quarter Six
+   * Todos los cursos por trimestre
+   * Las conexiones entre prerrequisitos
+   * Una guía visual para planear la ruta académica
 
-BTE 125 Web-Based Technologies 5 credits
-BTE 195 Capstone Project 3 credits
-PSYC& 100 General Psychology 5 credits (or any Social Science course)
-BTE 191 Customer Service/Help Desk 3 credits
+---
 
-
-Quarter One	Requisites
-Students needing prerequisites for math and English should take them this quarter.	
-CSD 110 Computer Programming Fundamentals with Python 5 credits	ENGL 93 (or placement into ENGL 99 or higher) and MATH 90 or AHSE 76 (or placement into MATH 99 or higher)
-CSD 112 HTML and CSS 5 credits	ENGL 93 (or placement into ENGL 99 or higher) and MATH 87 or AHSE 66 (or placement into MATH 90 or AHSE 76 or higher)
-ENGL& 101 English Composition I 5 credits	ENGL 99&nbsp;(or placement into ENGL& 101)
-
-Quarter Two	
-CS& 141 Computer Science I Java 5 credits	110
-CSD 122 JavaScript 5 credits	110 & 112
-CSD 138 Structured Query Language (SQL) 5 credits	110
-
-Quarter Three	
-CS 143 Computer Science II Java 5 credits	141
-CSD 268 Quality Assurance Methodologies 5 credits	141
-MATH& 141 Pre-Calculus I 5 credits (or any higher level course in the calculus sequence)	
-Quarter Four	
-ART 102 Introduction to 2D Design 5 credits (or any Humanities course)	ABED 40 or AHSE 56 (or placement into MATH 87 or AHSE 66 or higher) and ABED 46 (or placement into ENGL 93 or higher)
-PHYS& 114 General Physics I w/Lab 5 credits (or any Natural Science course with a lab)	MATH 111 or MATH& 142 (or any higher level course in the calculus sequence)
-SOC& 101 Introduction to Sociology 5 credits (or any Social Science course)	ENGL 93 (or placement into ENGL 99 or higher)
-Quarter Five	
-CSD 230 Programming For Mobile Devices 5 credits	143 or 228
-CSD 275 PHP Scripting 5 credits	110 and 112
-CSD 233 C++ Programming 5 credits	143 as either
-Quarter Six	
-CSD 228 Programming with C# 5 credits	141
-CSD 298 Technical Interview/Job Seach 5 credits	143
-OR	
-DSGN 290 Portfolio/Job Search 5 credits	art 102
