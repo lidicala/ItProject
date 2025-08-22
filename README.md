@@ -2,7 +2,7 @@
 _This README is available in English and Spanish. Scroll down for the Spanish version._ 
 _Este README está disponible en inglés y en español. Desplázate hacia abajo para la versión en español._
 
-**Contributors:** Jacob Gomez, Uliana Topilina, Lidi Cala
+**Contributors:** Lidi Cala, Jacob Gomez, Uliana Topilina
 
 ---
 
@@ -48,7 +48,7 @@ _Este README está disponible en inglés y en español. Esta es la versión en e
 _This README is available in English and Spanish. Scroll up for the English version._
 
 
-**Colaboradores:** Jacob Gomez, Uliana Topilina, Lidi Cala
+**Colaboradores:** Lidi Cala, Jacob Gomez, Uliana Topilina
 
 ---
 
